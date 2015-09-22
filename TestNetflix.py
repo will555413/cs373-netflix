@@ -15,13 +15,13 @@
 from io       import StringIO
 from unittest import main, TestCase
 
-from Collatz import collatz_read, collatz_eval, collatz_print, collatz_solve, cycle_length
+from Netflix import collatz_read # import methods to be tested
 
 # -----------
-# TestCollatz
+# TestNetflix
 # -----------
 
-class TestCollatz (TestCase) :
+class TestNetflix (TestCase) :
     # ----
     # read
     # ----
@@ -137,26 +137,3 @@ class TestCollatz (TestCase) :
 
 if __name__ == "__main__" :
     main()
-
-"""
-% coverage3 run --branch TestCollatz.py >  TestCollatz.out 2>&1
-
-
-
-% coverage3 report -m                   >> TestCollatz.out
-
-
-
-% cat TestCollatz.out
-.......
-----------------------------------------------------------------------
-Ran 7 tests in 0.001s
-
-OK
-Name          Stmts   Miss Branch BrMiss  Cover   Missing
----------------------------------------------------------
-Collatz          18      0      6      0   100%
-TestCollatz      33      1      2      1    94%   79
----------------------------------------------------------
-TOTAL            51      1      8      1    97%
-"""
