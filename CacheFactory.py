@@ -67,7 +67,6 @@ def user_read (direc) :
             else:
                 ucache[uid][index][0]+=rating
                 ucache[uid][index][1]+=1
-            print("ucache["+str(uid)+"] = "+str(ucache[uid]))
 
 # ----------
 # year2index
@@ -110,15 +109,13 @@ def movie_read (titles) :
         assert int(lst[0]) == len(mcache)
     
 
-# -------------
-# netflix_print
-# -------------
+# --------------
+# cal_avg_rating
+# --------------
 
-# def netflix_print (w, i, j, v) :
-#     """
-    
-#     """
-#     w.write(str(i) + " " + str(j) + " " + str(v) + "\n")
+# ------------
+# output_cache
+# ------------
 
 # -------------
 # cache_produce
@@ -126,13 +123,11 @@ def movie_read (titles) :
 
 def cache_produce (w) :
     """
-    
+    calls the cache construction functions and output the result to the file specified
     """
     movie_read(open('/u/downing/cs/netflix/movie_titles.txt', 'r', encoding = "ISO-8859-1"))
-    # global mcache
-    # for e in mcache:
-    #     w.write(str(e)+"\n")
     user_read("/u/downing/cs/netflix/training_set")
+
 
 # ----
 # main
