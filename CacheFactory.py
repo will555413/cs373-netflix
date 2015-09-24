@@ -176,7 +176,7 @@ def output_cache(cache, w):
 
     elif type(cache) == list:
         for i in range(len(cache)):
-            w.write(str(i+1)+" "+str(cache[i][0])+" "+str(cache[i][1]))
+            w.write(str(i+1)+" "+str(cache[i][0])+" "+str(cache[i][1])+"\n")
 
     else:
         print("cache input not a list or dict")
@@ -213,9 +213,7 @@ def cache_produce (w) :
     cal_avg_rating(ucache)
 
     output_cache(ucache, open('/u/wc6892/Documents/cs373-netflix/ucache.txt', 'w'))
-    # print_lst(ucache)
-    # print_lst(mcache)
-
+    output_cache(mcache, open('/u/wc6892/Documents/cs373-netflix/mcache.txt', 'w'))
 
 # ----
 # main
