@@ -3,3 +3,6 @@
 __pycache__
 .coverage
 *.pyc
+probe.txt
+wc6892-mcache.txt
+wc6892-ucache.txt

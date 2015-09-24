@@ -7,25 +7,6 @@
 import os
 import sys
 
-# --------------------
-# Cache implementation
-# --------------------
-"""
-Global dictionaries for user caches
-Each element in ucache is a list with 5 sublists, which represent the following:
-[total rating of movies in 1890-1913, number of rating in said period], [of 1913-1936], [of 1936-1959], [of 1959-1982], [of 1982-2005]]
-By spliting the periods into 5 subperiods, the average rating will be more relevant in predicting rating of another movie in the same period
-"""
-ucache = {}
-
-"""
-Since movie titles are ordered from 1 - 17770, I just use a list to stored the information.
-Each movie is indexed as (its ID - 1), for example, Dinosaur Planet will be mcache[0].
-Each element in mcache is a list in following format: [year published, [sum of all ratings, count of ratings]]
-"""
-mcache = []
-
-
 # ---------
 # user_read
 # ---------
@@ -185,7 +166,7 @@ def output_cache(cache, w):
 # cache_produce
 # -------------
 
-def cache_produce (w) :
+def cache_produce () :
     """
     calls the cache construction functions and output the result to the file specified
     """
@@ -216,4 +197,4 @@ def cache_produce (w) :
 # ----
 
 if __name__ == "__main__" :
-    cache_produce(sys.stdout)
+    cache_produce()
