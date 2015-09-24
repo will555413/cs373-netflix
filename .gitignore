@@ -4,5 +4,7 @@ __pycache__
 .coverage
 *.pyc
 probe.txt
+probe.out
+probe_actual.txt
 wc6892-mcache.txt
 wc6892-ucache.txt

@@ -17,14 +17,25 @@ def input_gen(IN, OUT):
 	IN the input file
 	OUT the output file
 	"""
+	temp = []
 	first = False
 	for line in IN:
 		if line.replace('\n', '').endswith(':') and int(random()*100) == 1:
-			OUT.write(line)
+			temp.append(line)
 			first = True
 		elif int(random()*1000) == 500 or first:
-			OUT.write(line)
+			temp.append(line)
 			first = False
+
+	begin = False
+	for item in temp:
+		if begin:
+			OUT.write(item)
+			continue
+		if item.replace('\n', '').endswith(':'):
+			begin = True
+
+		
 
 # ----
 # main
