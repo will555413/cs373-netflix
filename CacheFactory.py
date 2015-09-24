@@ -49,8 +49,8 @@ def user_read (ucache, mcache, direc) :
         # get the index of the corresponding sublist that stores the data of the movies in the corresponding era 
         index = year2index(mcache[mid-1][0])
 
-        if mid != 4388 and mid != 6908 and mid != 7241:
-            continue
+        # if mid != 4388 and mid != 6908 and mid != 7241:
+        #     continue
 
         # iterate through all lines in the file
         for line in mrating:
@@ -74,28 +74,6 @@ def user_read (ucache, mcache, direc) :
                 ucache[uid][index][1]+=1
 
     assert len(ucache) <= 480189
-
-# ---------
-# print_lst
-# ---------
-
-def print_lst (cache):
-    """
-    helper function that allow me to see the data inside the cache
-    cache the input cache; it will be ucache or mcache
-    """
-    if type(cache) == dict:
-        print("user_cache")
-        for i in cache:
-            print("user["+str(i)+"]: "+str(cache[i]))
-
-    elif type(cache) == list:
-        print("movie_cache")
-        for i in range(len(cache)):
-            print("movie["+str(i+1)+"]: "+str(cache[i]))
-
-    else:
-        print("cache input not a list or dict")
 
 # ----------
 # year2index
@@ -145,11 +123,16 @@ def movie_read (mcache, titles) :
 
 def cal_avg_rating (cache):
     if type(cache) == dict:
-        return ""
+        for i in cache:
+            for j in range(5):
+                if cache[i][j][0] != 0 and cache[i][j][1] != 0:
+                    cache[i][j] = cache[i][j][0]/cache[i][j][1]
+                else:
+                    cache[i][j] = 0
 
     elif type(cache) == list:
         for i in range(len(cache)):
-            if cache[i][1][1] != 0:
+            if cache[i][1][0] != 0 and cache[i][1][1] != 0:
                 cache[i][1] = cache[i][1][0]/cache[i][1][1]
             else:
                 cache[i][1] = 0
@@ -157,10 +140,46 @@ def cal_avg_rating (cache):
     else:
         print("cache input not a list or dict")
 
+# ---------
+# print_lst
+# ---------
+
+def print_lst (cache):
+    """
+    helper function that allow me to see the data inside the cache
+    cache the input cache; it will be ucache or mcache
+    """
+    if type(cache) == dict:
+        print("user_cache")
+        for i in cache:
+            print("user["+str(i)+"]: "+str(cache[i]))
+
+    elif type(cache) == list:
+        print("movie_cache")
+        for i in range(len(cache)):
+            print("movie["+str(i+1)+"]: "+str(cache[i]))
+
+    else:
+        print("cache input not a list or dict")
 
 # ------------
 # output_cache
 # ------------
+
+def output_cache(cache, w):
+    if type(cache) == dict:
+        for i in cache:
+            w.write(str(i)+" ")
+            for j in range(5):
+                w.write(str(cache[i][j])+" ")
+            w.write("\n")
+
+    elif type(cache) == list:
+        for i in range(len(cache)):
+            w.write(str(i+1)+" "+str(cache[i][0])+" "+str(cache[i][1]))
+
+    else:
+        print("cache input not a list or dict")
 
 # -------------
 # cache_produce
@@ -173,7 +192,7 @@ def cache_produce (w) :
 
 
     """
-    Global dictionaries for user caches
+    dictionaries for user caches
     Each element in ucache is a list with 5 sublists, which represent the following:
     [total rating of movies in 1890-1913, number of rating in said period], [of 1913-1936], [of 1936-1959], [of 1959-1982], [of 1982-2005]]
     By spliting the periods into 5 subperiods, the average rating will be more relevant in predicting rating of another movie in the same period
@@ -191,8 +210,11 @@ def cache_produce (w) :
     user_read(ucache, mcache, "/u/downing/cs/netflix/training_set")
 
     cal_avg_rating(mcache)
+    cal_avg_rating(ucache)
+
+    output_cache(ucache, open('/u/wc6892/Documents/cs373-netflix/ucache.txt', 'w'))
     # print_lst(ucache)
-    print_lst(mcache)
+    # print_lst(mcache)
 
 
 # ----
