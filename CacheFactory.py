@@ -30,16 +30,15 @@ mcache = []
 # user_read
 # ---------
 
-def user_read (direc) :
+def user_read (ucache, mcache, direc) :
     """
     reads all files in the directory specified; expected all files to be plain text
     direc the directory to be read
 
     """
     assert os.path.isdir(direc)
-
-    global ucache
-    global mcache
+    assert type(ucache) == dict
+    assert type(mcache) == list
 
     # iterate through every files in the directory
     for f in os.listdir(direc):
@@ -50,12 +49,18 @@ def user_read (direc) :
         # get the index of the corresponding sublist that stores the data of the movies in the corresponding era 
         index = year2index(mcache[mid-1][0])
 
+        if mid != 4388 and mid != 6908 and mid != 7241:
+            continue
+
         # iterate through all lines in the file
         for line in mrating:
             lst = line.split(',')
 
             uid = int(lst[0])
             rating = int(lst[1])
+
+            mcache[mid-1][1][0]+=rating
+            mcache[mid-1][1][1]+=1
 
             if not uid in ucache:
                 ucache[uid] = [[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0]]
@@ -67,6 +72,30 @@ def user_read (direc) :
             else:
                 ucache[uid][index][0]+=rating
                 ucache[uid][index][1]+=1
+
+    assert len(ucache) <= 480189
+
+# ---------
+# print_lst
+# ---------
+
+def print_lst (cache):
+    """
+    helper function that allow me to see the data inside the cache
+    cache the input cache; it will be ucache or mcache
+    """
+    if type(cache) == dict:
+        print("user_cache")
+        for i in cache:
+            print("user["+str(i)+"]: "+str(cache[i]))
+
+    elif type(cache) == list:
+        print("movie_cache")
+        for i in range(len(cache)):
+            print("movie["+str(i+1)+"]: "+str(cache[i]))
+
+    else:
+        print("cache input not a list or dict")
 
 # ----------
 # year2index
@@ -96,13 +125,14 @@ def year2index (year) :
 # movie_read
 # ----------
 
-def movie_read (titles) :
+def movie_read (mcache, titles) :
     """
     reads all movie IDs and their corresponding year into the movie dictionary
     also setup each entry in the movie dictionary
     titles the file that stored the information about movie titles
     """
-    global mcache
+    assert type(mcache) == list
+    # global mcache
     for line in titles:
         lst = line.split(',')
         mcache.append([-1 if lst[1] == "NULL" else int(lst[1])  ,[0.0,0.0]])
@@ -112,6 +142,21 @@ def movie_read (titles) :
 # --------------
 # cal_avg_rating
 # --------------
+
+def cal_avg_rating (cache):
+    if type(cache) == dict:
+        return ""
+
+    elif type(cache) == list:
+        for i in range(len(cache)):
+            if cache[i][1][1] != 0:
+                cache[i][1] = cache[i][1][0]/cache[i][1][1]
+            else:
+                cache[i][1] = 0
+
+    else:
+        print("cache input not a list or dict")
+
 
 # ------------
 # output_cache
@@ -125,8 +170,29 @@ def cache_produce (w) :
     """
     calls the cache construction functions and output the result to the file specified
     """
-    movie_read(open('/u/downing/cs/netflix/movie_titles.txt', 'r', encoding = "ISO-8859-1"))
-    user_read("/u/downing/cs/netflix/training_set")
+
+
+    """
+    Global dictionaries for user caches
+    Each element in ucache is a list with 5 sublists, which represent the following:
+    [total rating of movies in 1890-1913, number of rating in said period], [of 1913-1936], [of 1936-1959], [of 1959-1982], [of 1982-2005]]
+    By spliting the periods into 5 subperiods, the average rating will be more relevant in predicting rating of another movie in the same period
+    """
+    ucache = {}
+
+    """
+    Since movie titles are ordered from 1 - 17770, I just use a list to stored the information.
+    Each movie is indexed as (its ID - 1), for example, Dinosaur Planet will be mcache[0].
+    Each element in mcache is a list in following format: [year published, [sum of all ratings, count of ratings]]
+    """
+    mcache = []
+
+    movie_read(mcache, open('/u/downing/cs/netflix/movie_titles.txt', 'r', encoding = "ISO-8859-1"))
+    user_read(ucache, mcache, "/u/downing/cs/netflix/training_set")
+
+    cal_avg_rating(mcache)
+    # print_lst(ucache)
+    print_lst(mcache)
 
 
 # ----
