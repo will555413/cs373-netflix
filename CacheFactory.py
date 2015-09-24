@@ -49,9 +49,6 @@ def user_read (ucache, mcache, direc) :
         # get the index of the corresponding sublist that stores the data of the movies in the corresponding era 
         index = year2index(mcache[mid-1][0])
 
-        # if mid != 4388 and mid != 6908 and mid != 7241:
-        #     continue
-
         # iterate through all lines in the file
         for line in mrating:
             lst = line.split(',')
@@ -167,6 +164,7 @@ def print_lst (cache):
 # ------------
 
 def output_cache(cache, w):
+    w.truncate()
     if type(cache) == dict:
         for i in cache:
             w.write(str(i)+" ")
@@ -176,7 +174,7 @@ def output_cache(cache, w):
 
     elif type(cache) == list:
         for i in range(len(cache)):
-            w.write(str(i+1)+" "+str(cache[i][0])+" "+str(cache[i][1])+"\n")
+            w.write(str(cache[i][0])+" "+str(cache[i][1])+"\n")
 
     else:
         print("cache input not a list or dict")
@@ -212,8 +210,8 @@ def cache_produce (w) :
     cal_avg_rating(mcache)
     cal_avg_rating(ucache)
 
-    output_cache(ucache, open('/u/wc6892/Documents/cs373-netflix/ucache.txt', 'w'))
-    output_cache(mcache, open('/u/wc6892/Documents/cs373-netflix/mcache.txt', 'w'))
+    output_cache(ucache, open('/u/wc6892/Documents/cs373-netflix/wc6892-ucache.txt', 'w'))
+    output_cache(mcache, open('/u/wc6892/Documents/cs373-netflix/wc6892-mcache.txt', 'w'))
 
 # ----
 # main
