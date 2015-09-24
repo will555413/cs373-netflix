@@ -30,15 +30,16 @@ mcache = []
 # user_read
 # ---------
 
-def user_read (ucache, mcache, direc) :
+def user_read (mcache, direc) :
     """
     reads all files in the directory specified; expected all files to be plain text
     direc the directory to be read
 
     """
     assert os.path.isdir(direc)
-    assert type(ucache) == dict
     assert type(mcache) == list
+
+    ucache = {}
 
     # iterate through every files in the directory
     for f in os.listdir(direc):
@@ -71,6 +72,7 @@ def user_read (ucache, mcache, direc) :
                 ucache[uid][index][1]+=1
 
     assert len(ucache) <= 480189
+    return ucache
 
 # ----------
 # year2index
@@ -100,18 +102,18 @@ def year2index (year) :
 # movie_read
 # ----------
 
-def movie_read (mcache, titles) :
+def movie_read (titles) :
     """
     reads all movie IDs and their corresponding year into the movie dictionary
     also setup each entry in the movie dictionary
     titles the file that stored the information about movie titles
     """
-    assert type(mcache) == list
-    # global mcache
+    mcache = []
     for line in titles:
         lst = line.split(',')
         mcache.append([-1 if lst[1] == "NULL" else int(lst[1])  ,[0.0,0.0]])
         assert int(lst[0]) == len(mcache)
+    return mcache
     
 
 # --------------
@@ -188,6 +190,12 @@ def cache_produce (w) :
     calls the cache construction functions and output the result to the file specified
     """
 
+    """
+    Since movie titles are ordered from 1 - 17770, I just use a list to stored the information.
+    Each movie is indexed as (its ID - 1), for example, Dinosaur Planet will be mcache[0].
+    Each element in mcache is a list in following format: [year published, [sum of all ratings, count of ratings]]
+    """
+    mcache = movie_read(open('/u/downing/cs/netflix/movie_titles.txt', 'r', encoding = "ISO-8859-1"))
 
     """
     dictionaries for user caches
@@ -195,17 +203,7 @@ def cache_produce (w) :
     [total rating of movies in 1890-1913, number of rating in said period], [of 1913-1936], [of 1936-1959], [of 1959-1982], [of 1982-2005]]
     By spliting the periods into 5 subperiods, the average rating will be more relevant in predicting rating of another movie in the same period
     """
-    ucache = {}
-
-    """
-    Since movie titles are ordered from 1 - 17770, I just use a list to stored the information.
-    Each movie is indexed as (its ID - 1), for example, Dinosaur Planet will be mcache[0].
-    Each element in mcache is a list in following format: [year published, [sum of all ratings, count of ratings]]
-    """
-    mcache = []
-
-    movie_read(mcache, open('/u/downing/cs/netflix/movie_titles.txt', 'r', encoding = "ISO-8859-1"))
-    user_read(ucache, mcache, "/u/downing/cs/netflix/training_set")
+    ucache = user_read(mcache, "/u/downing/cs/netflix/training_set")
 
     cal_avg_rating(mcache)
     cal_avg_rating(ucache)

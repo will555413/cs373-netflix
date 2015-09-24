@@ -44,7 +44,7 @@ def mov_cache_read (movie_cache) :
     """
     mcache = []
     for line in movie_cache:
-        mid, yr, rat = line.split()
+        yr, rat = line.split()
         mcache.append([int(yr), float(rat)])
     return mcache
     
