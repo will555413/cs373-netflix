@@ -18,22 +18,29 @@ def input_gen(IN, OUT):
 	OUT the output file
 	"""
 	temp = []
-	first = False
-	for line in IN:
-		if line.replace('\n', '').endswith(':') and int(random()*100) == 1:
+	line = next(IN)
+	while True:
+		if line.find(':')>-1 and random()*30 <= 1:
 			temp.append(line)
 			first = True
-		elif int(random()*1000) == 500 or first:
-			temp.append(line)
-			first = False
-
-	begin = False
+			try:
+				line = next(IN)
+				while (first or random()*10 <= 5) and line.find(':')<0:
+					temp.append(line)
+					line = next(IN)
+					first = False
+			except StopIteration:
+				break
+		else:
+			try:
+				line = next(IN)
+				while line.find(':')<0:
+					line = next(IN)
+			except StopIteration:
+				break
+	
 	for item in temp:
-		if begin:
-			OUT.write(item)
-			continue
-		if item.replace('\n', '').endswith(':'):
-			begin = True
+		OUT.write(item)
 
 		
 
