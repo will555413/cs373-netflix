@@ -21,11 +21,11 @@ before_script:
 script:
     - date
     - ls -al
-    - make collatz-tests
+    - make netflix-tests
     - ls -al
-    - make Collatz.html
+    - make Netflix.html
     - ls -al
-    - make Collatz.log
+    - make Netflix.log
     - ls -al
     - make test
     - ls -al

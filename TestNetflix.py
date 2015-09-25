@@ -22,37 +22,19 @@ from Netflix import collatz_read # import methods to be tested
 # -----------
 
 class TestNetflix (TestCase) :
-    # ----
-    # read
-    # ----
+    # ---------------
+    # user_cache_read
+    # ---------------
 
-    def test_read_1 (self) :
+    def test_user_read_1 (self) :
         s    = "1 10\n"
         i, j = collatz_read(s)
         self.assertEqual(i,  1)
         self.assertEqual(j, 10)
 
-    def test_read_2 (self) :
-        s    = "5000 2\n"
-        i, j = collatz_read(s)
-        self.assertEqual(i,  5000)
-        self.assertEqual(j, 2)
-
-    def test_read_3 (self) :
-        s    = "100 200\n"
-        i, j = collatz_read(s)
-        self.assertEqual(i,  100)
-        self.assertEqual(j, 200)
-
-    def test_read_4 (self) :
-        s    = "900 1000\n"
-        i, j = collatz_read(s)
-        self.assertEqual(i,  900)
-        self.assertEqual(j, 1000)
-
-    # ----
-    # eval
-    # ----
+    # --------------
+    # mov_cache_read
+    # --------------
 
     def test_eval_1 (self) :
         v = collatz_eval(1, 10)
@@ -71,7 +53,7 @@ class TestNetflix (TestCase) :
         self.assertEqual(v, 174)
 
     # ------------
-    # cycle_length
+    # netflix_eval
     # ------------
 
     def test_cycle_length_1 (self) :
@@ -90,9 +72,9 @@ class TestNetflix (TestCase) :
         v = cycle_length(100000)
         self.assertEqual(v, 129)
 
-    # -----
-    # print
-    # -----
+    # --------
+    # estimate
+    # --------
 
     def test_print_1 (self) :
         w = StringIO()
@@ -109,9 +91,9 @@ class TestNetflix (TestCase) :
         collatz_print(w, 5000, 2, 238)
         self.assertEqual(w.getvalue(), "5000 2 238\n")
 
-    # -----
-    # solve
-    # -----
+    # -------------
+    # netflix_solve
+    # -------------
 
     def test_solve_1 (self) :
         r = StringIO("1 10\n100 200\n201 210\n900 1000\n")
