@@ -15,7 +15,7 @@
 from io       import StringIO
 from unittest import main, TestCase
 
-from Netflix import collatz_read # import methods to be tested
+from Netflix import user_cache_read, mov_cache_read, netflix_solve
 
 # -----------
 # TestNetflix
@@ -27,91 +27,79 @@ class TestNetflix (TestCase) :
     # ---------------
 
     def test_user_read_1 (self) :
-        s    = "1 10\n"
-        i, j = collatz_read(s)
-        self.assertEqual(i,  1)
-        self.assertEqual(j, 10)
+        s    = "1 0.1\n2 -0.1\n50 5"
+        Dict = user_cache_read(s)
+        self.assertEqual(Dict[1],  0.1)
+        self.assertEqual(Dict[2],  -0.1)
+        self.assertEqual(Dict[50], 5)
+
+    def test_user_read_2 (self) :
+        s    = "10 20\n-1 -500\n5000 0.00005"
+        Dict = user_cache_read(s)
+        self.assertEqual(Dict[10],   20)
+        self.assertEqual(Dict[-1],   -500)
+        self.assertEqual(Dict[5000], 0.00005)
+
+    def test_user_read_3 (self) :
+        s    = "0 0.001\n-50 50\n50 -50\n5 5.5555"
+        Dict = user_cache_read(s)
+        self.assertEqual(Dict[0],   0.001)
+        self.assertEqual(Dict[-50], 50)
+        self.assertEqual(Dict[50],  -50)
+        self.assertEqual(Dict[5],   5.5555)
 
     # --------------
     # mov_cache_read
     # --------------
 
-    def test_eval_1 (self) :
-        v = collatz_eval(1, 10)
-        self.assertEqual(v, 20)
+    def test_mov_read_1 (self) :
+        s   = "10\n0.5\n0.1\n-0.5\n-0.1"
+        lst = mov_cache_read(s)
+        self.assertEqual(lst[0], 10)
+        self.assertEqual(lst[1], 0.5)
+        self.assertEqual(lst[2], 0.1)
+        self.assertEqual(lst[3], -0.5)
+        self.assertEqual(lst[4], -0.1)
 
-    def test_eval_2 (self) :
-        v = collatz_eval(100, 200)
-        self.assertEqual(v, 125)
+    def test_mov_read_2 (self) :
+        s   = "-10\n1000\n-1000\n0.000001\n-0.000001"
+        lst = mov_cache_read(s)
+        self.assertEqual(lst[0], -10)
+        self.assertEqual(lst[1], 1000)
+        self.assertEqual(lst[2], -1000)
+        self.assertEqual(lst[3], 0.000001)
+        self.assertEqual(lst[4], -0.000001)
 
-    def test_eval_3 (self) :
-        v = collatz_eval(201, 210)
-        self.assertEqual(v, 89)
-
-    def test_eval_4 (self) :
-        v = collatz_eval(900, 1000)
-        self.assertEqual(v, 174)
-
-    # ------------
-    # netflix_eval
-    # ------------
-
-    def test_cycle_length_1 (self) :
-        v = cycle_length(1)
-        self.assertEqual(v, 1)
-
-    def test_cycle_length_2 (self) :
-        v = cycle_length(10)
-        self.assertEqual(v, 7)
-
-    def test_cycle_length_3 (self) :
-        v = cycle_length(200)
-        self.assertEqual(v, 27)
-
-    def test_cycle_length_4 (self) :
-        v = cycle_length(100000)
-        self.assertEqual(v, 129)
-
-    # --------
-    # estimate
-    # --------
-
-    def test_print_1 (self) :
-        w = StringIO()
-        collatz_print(w, 1, 10, 20)
-        self.assertEqual(w.getvalue(), "1 10 20\n")
-
-    def test_print_2 (self) :
-        w = StringIO()
-        collatz_print(w, 100, 200, 125)
-        self.assertEqual(w.getvalue(), "100 200 125\n")
-
-    def test_print_3 (self) :
-        w = StringIO()
-        collatz_print(w, 5000, 2, 238)
-        self.assertEqual(w.getvalue(), "5000 2 238\n")
+    def test_mov_read_3 (self) :
+        s   = "-0.00001\n88888\n-88888\n7.77777\n-7.77777"
+        lst = mov_cache_read(s)
+        self.assertEqual(lst[0], -0.00001)
+        self.assertEqual(lst[1], 88888)
+        self.assertEqual(lst[2], -88888)
+        self.assertEqual(lst[3], 7.77777)
+        self.assertEqual(lst[4], 7.77777)
 
     # -------------
     # netflix_solve
     # -------------
 
     def test_solve_1 (self) :
-        r = StringIO("1 10\n100 200\n201 210\n900 1000\n")
+        r = StringIO("1:\n30878\n2647871\n1283744\n2488120\n")
         w = StringIO()
-        collatz_solve(r, w)
-        self.assertEqual(w.getvalue(), "1 10 20\n100 200 125\n201 210 89\n900 1000 174\n")
+        netflix_solve(r, w)
+        self.assertEqual(w.getvalue(), "1:\n3.78\n3.38\n3.69\n4.8\n")
 
     def test_solve_2 (self) :
-        r = StringIO("5000 2\n200 200\n1 1\n17 827067\n")
+        r = StringIO("10000:\n200206\n523108\n10001:\n262828\n2609496\n")
         w = StringIO()
-        collatz_solve(r, w)
-        self.assertEqual(w.getvalue(), "5000 2 238\n200 200 27\n1 1 1\n17 827067 509\n")
+        netflix_solve(r, w)
+        self.assertEqual(w.getvalue(), "10000:\n3.7\n3.56\n10001:\n3.49\n4.39\n")
 
     def test_solve_3 (self) :
-        r = StringIO("2178 166660\n43275 86861\n8498 25440\n1 999999\n")
+        r = StringIO("11895:\n568614\n2502587\n11896:\n911967\n2176297\n664527\n11897:\n73119\n1204080\n897013\n")
         w = StringIO()
-        collatz_solve(r, w)
-        self.assertEqual(w.getvalue(), "2178 166660 383\n43275 86861 351\n8498 25440 282\n1 999999 525\n")
+        netflix_solve(r, w)
+        self.assertEqual(w.getvalue(), "11895:\n3.64\n3.55\n11896:\n3.76\n3.31\n3.52\n11897:\n3.12\n2.82\n2.15\n")
 
 # ----
 # main

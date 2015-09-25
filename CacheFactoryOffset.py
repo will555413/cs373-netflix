@@ -116,17 +116,15 @@ def cache_produce () :
     """
 
     """
-    Since movie titles are ordered from 1 - 17770, I just use a list to stored the information.
-    Each movie is indexed as (its ID - 1), for example, Dinosaur Planet will be mcache[0].
-    Each element in mcache is a list in following format: [year published, [sum of all ratings, count of ratings]]
+    list for movie
+    each entry is the sum and count of all ratings received by each movie, which will be used later to calculate the user offset
     """
     mcache = movie_read(open('/u/downing/cs/netflix/movie_titles.txt', 'r', encoding = "ISO-8859-1"))
 
     """
     dictionaries for user caches
-    Each element in ucache is a list with 5 sublists, which represent the following:
-    [total rating of movies in 1890-1913, number of rating in said period], [of 1913-1936], [of 1936-1959], [of 1959-1982], [of 1982-2005]]
-    By spliting the periods into 5 subperiods, the average rating will be more relevant in predicting rating of another movie in the same period
+    each entry contain the sum and count of all ratings given by each user, which will be used later to calculate the user offset
+    mean is the average of all ratings from all movies
     """
     ucache, mean = user_read(mcache, "/u/downing/cs/netflix/training_set")
 
