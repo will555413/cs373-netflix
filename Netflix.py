@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from numpy import mean, sqrt, square, subtract
-import requests
+from requests import get
 import os
 
 # ---------------
@@ -16,7 +16,7 @@ def user_cache_read (user_cache) :
     """
     ucache = {}
     for line in user_cache:
-        uid, rat = line.split()
+        uid, rat = line.split(' ')
         ucache[int(uid)] = float(rat)
     return ucache
 
@@ -48,17 +48,22 @@ def netflix_solve (r, w) :
     r the input stream
     w the output stream
     """
-    ufile = 0
-    mfile = 0
-    if os.path.isfile('/u/ebanner/netflix-tests/wc6892-ucacheoff.txt') and os.path.isfile('/u/ebanner/netflix-tests/wc6892-mcacheoff.txt'):
-        # Read cache from the file /u/ebanner/netflix-tests/path/to/caches
-        ufile = open('/u/ebanner/netflix-tests/wc6892-ucacheoff.txt')
-        mfile = open('/u/ebanner/netflix-tests/wc6892-mcacheoff.txt')
-    else:
-        # Read cache from HTTP
-        ufile = requests.get('http://www.cs.utexas.edu/users/ebanner/netflix-tests/wc6892-ucacheoff.txt')
-        mfile = requests.get('http://www.cs.utexas.edu/users/ebanner/netflix-tests/wc6892-mcacheoff.txt')
+    # if os.path.isfile('/u/ebanner/netflix-tests/wc6892-ucacheoff.txt') and os.path.isfile('/u/ebanner/netflix-tests/wc6892-mcacheoff.txt'):
+    #     # Read cache from the file /u/ebanner/netflix-tests/path/to/caches
+    #     ufile = open('/u/ebanner/netflix-tests/wc6892-ucacheoff.txt')
+    #     mfile = open('/u/ebanner/netflix-tests/wc6892-mcacheoff.txt')
+    # else:
+    #     # Read cache from HTTP
+    #     ufile = requests.get('http://www.cs.utexas.edu/users/ebanner/netflix-tests/wc6892-ucacheoff.txt')
+    #     mfile = requests.get('http://www.cs.utexas.edu/users/ebanner/netflix-tests/wc6892-mcacheoff.txt')
 
+    # ufile = get('http://www.cs.utexas.edu/users/ebanner/netflix-tests/wc6892-ucacheoff.txt').text
+    # mfile = get('http://www.cs.utexas.edu/users/ebanner/netflix-tests/wc6892-mcacheoff.txt').text
+
+    # print(ufile)
+
+    ufile = open('/u/ebanner/netflix-tests/wc6892-ucacheoff.txt')
+    mfile = open('/u/ebanner/netflix-tests/wc6892-mcacheoff.txt')
 
     ucache = user_cache_read(ufile)
     mcache = mov_cache_read(mfile)
