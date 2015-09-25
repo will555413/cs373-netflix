@@ -33,7 +33,12 @@ movie_cache&nbsp;the&nbsp;movie&nbsp;offsets&nbsp;cache&nbsp;file&nbsp;generated
  <dl><dt><a name="-netflix_solve"><strong>netflix_solve</strong></a>(r, w)</dt><dd><tt>Core&nbsp;of&nbsp;the&nbsp;Netflix.py<br>
 Calls&nbsp;functions&nbsp;to&nbsp;construct&nbsp;caches,&nbsp;then&nbsp;predict&nbsp;the&nbsp;rating&nbsp;of&nbsp;specified&nbsp;users&nbsp;on&nbsp;specified&nbsp;movies&nbsp;using&nbsp;offsets<br>
 r&nbsp;the&nbsp;input&nbsp;stream<br>
-w&nbsp;the&nbsp;output&nbsp;stream</tt></dd></dl>
+x&nbsp;the&nbsp;output&nbsp;stream</tt></dd></dl>
+ <dl><dt><a name="-probe_read"><strong>probe_read</strong></a>(probe, actual_rating, current)</dt><dd><tt>Reads&nbsp;in&nbsp;probe.txt&nbsp;and&nbsp;its&nbsp;corresponding&nbsp;actual&nbsp;rating.<br>
+While&nbsp;reading,&nbsp;conpare&nbsp;to&nbsp;the&nbsp;input&nbsp;set&nbsp;IN&nbsp;and&nbsp;search&nbsp;for&nbsp;appropriate&nbsp;actual&nbsp;rating<br>
+probe&nbsp;the&nbsp;probe.txt<br>
+actual_rating&nbsp;the&nbsp;probe_actual.txt&nbsp;provided&nbsp;by&nbsp;classmate<br>
+current&nbsp;the&nbsp;list&nbsp;represent&nbsp;the&nbsp;current&nbsp;input</tt></dd></dl>
  <dl><dt><a name="-user_cache_read"><strong>user_cache_read</strong></a>(user_cache)</dt><dd><tt>Reads&nbsp;and&nbsp;returns&nbsp;the&nbsp;user&nbsp;offsets&nbsp;cache&nbsp;generated&nbsp;by&nbsp;the&nbsp;CacheFactoryOff.py&nbsp;as&nbsp;dictionary<br>
 The&nbsp;cache&nbsp;recorded&nbsp;the&nbsp;offset&nbsp;of&nbsp;average&nbsp;rating&nbsp;given&nbsp;by&nbsp;each&nbsp;user&nbsp;relative&nbsp;to&nbsp;average&nbsp;of&nbsp;all&nbsp;ratings&nbsp;recorded&nbsp;<br>
 user_cache&nbsp;the&nbsp;user&nbsp;offsets&nbsp;cache&nbsp;file&nbsp;generated</tt></dd></dl>
