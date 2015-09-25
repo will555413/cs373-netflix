@@ -1,0 +1,89 @@
+commit 2955f6e651bfcf74abeae556885c25e5f45bd04d
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Thu Sep 24 21:46:11 2015 -0500
+
+    working fine on local file, but failed when retrieve cache through http
+
+commit f76b030be813b59279974be0bb95ac4287ce5d11
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Thu Sep 24 20:39:26 2015 -0500
+
+    .travis.yml and makefile update
+
+commit 9d454c6db3e1fb6864cfc3aae701f3b42697e348
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Thu Sep 24 19:52:48 2015 -0500
+
+    TestNetflix proto 1
+
+commit 6aeadbfdbfb340ae79829a44898f13d6cf0d8221
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Thu Sep 24 19:17:50 2015 -0500
+
+    complete change to offset version
+
+commit 2aeb1c1233073fb0a1cf75039684b153d9e48321
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Thu Sep 24 17:05:08 2015 -0500
+
+    Netflix prototype 2, everything up and running, need to get better estimation
+
+commit 5a6acd7ba8bcc054b0c9c71869f5c887a202858e
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Thu Sep 24 15:55:56 2015 -0500
+
+    RunNetflix.in generator added, Netflix.py prototype
+
+commit ae610f70ce59174153aa004712c760495891de91
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Thu Sep 24 14:28:28 2015 -0500
+
+    polish the CacheFactory
+
+commit 68cd8a7505c19d91c92be491e063c4326b663fb8
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Thu Sep 24 14:19:36 2015 -0500
+
+    cache reading complete
+
+commit 6a0dc8afd6ff4a8f739a762e9817f28f0c3e645e
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Thu Sep 24 12:22:09 2015 -0500
+
+    cache created
+
+commit 8435e035e0f45f1bc9cd4f83f8e0ac44519a2f38
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Thu Sep 24 11:58:58 2015 -0500
+
+    cache outputting functions complete, ready for full scale test 1
+
+commit 103f163526093647065ca360742c54afac9e2bb9
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Thu Sep 24 11:33:16 2015 -0500
+
+    helper function, print, and avg rating calculation added
+
+commit dd305b8c25255c466c30e25bcd7a12e9ce3c6094
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Wed Sep 23 16:13:08 2015 -0500
+
+    functions needed planned out
+
+commit b50cd72949fc116d7c6d30067b1cd525669d4911
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Wed Sep 23 15:58:58 2015 -0500
+
+    cache factory could read in input
+
+commit c8c9df237b6103319bf2d42030ec08276837d7bb
+Author: William <will555413>
+Date:   Tue Sep 22 14:52:08 2015 -0500
+
+    skeleton code added
+
+commit 7243b31751020cab4ac034bc2f25ad6aa633e7b7
+Author: William <will555413>
+Date:   Sun Sep 20 21:05:21 2015 -0500
+
+    initial push

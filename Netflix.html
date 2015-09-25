@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module Netflix</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>Netflix</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/v/filer4b/v38q001/wc6892/Documents/cs373-netflix/Netflix.py">/v/filer4b/v38q001/wc6892/Documents/cs373-netflix/Netflix.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-mov_cache_read"><strong>mov_cache_read</strong></a>(movie_cache)</dt><dd><tt>Reads&nbsp;and&nbsp;returns&nbsp;the&nbsp;movie&nbsp;cache&nbsp;generated&nbsp;by&nbsp;the&nbsp;CacheFactoryOff.py&nbsp;as&nbsp;list<br>
+The&nbsp;first&nbsp;line&nbsp;of&nbsp;the&nbsp;cache&nbsp;recorded&nbsp;the&nbsp;average&nbsp;of&nbsp;all&nbsp;ratings&nbsp;recorded<br>
+The&nbsp;rest&nbsp;of&nbsp;the&nbsp;cache&nbsp;recorded&nbsp;the&nbsp;offset&nbsp;of&nbsp;average&nbsp;rating&nbsp;each&nbsp;movie&nbsp;received&nbsp;relative&nbsp;to&nbsp;average&nbsp;of&nbsp;all&nbsp;ratings&nbsp;recorded<br>
+The&nbsp;first&nbsp;entry&nbsp;also&nbsp;offset&nbsp;the&nbsp;indices&nbsp;assigned&nbsp;to&nbsp;each&nbsp;movie&nbsp;offset&nbsp;so&nbsp;that&nbsp;the&nbsp;movie&nbsp;id&nbsp;could&nbsp;be&nbsp;used&nbsp;an&nbsp;index<br>
+movie_cache&nbsp;the&nbsp;movie&nbsp;offsets&nbsp;cache&nbsp;file&nbsp;generated</tt></dd></dl>
+ <dl><dt><a name="-netflix_solve"><strong>netflix_solve</strong></a>(r, w)</dt><dd><tt>Core&nbsp;of&nbsp;the&nbsp;Netflix.py<br>
+Calls&nbsp;functions&nbsp;to&nbsp;construct&nbsp;caches,&nbsp;then&nbsp;predict&nbsp;the&nbsp;rating&nbsp;of&nbsp;specified&nbsp;users&nbsp;on&nbsp;specified&nbsp;movies&nbsp;using&nbsp;offsets<br>
+r&nbsp;the&nbsp;input&nbsp;stream<br>
+w&nbsp;the&nbsp;output&nbsp;stream</tt></dd></dl>
+ <dl><dt><a name="-user_cache_read"><strong>user_cache_read</strong></a>(user_cache)</dt><dd><tt>Reads&nbsp;and&nbsp;returns&nbsp;the&nbsp;user&nbsp;offsets&nbsp;cache&nbsp;generated&nbsp;by&nbsp;the&nbsp;CacheFactoryOff.py&nbsp;as&nbsp;dictionary<br>
+The&nbsp;cache&nbsp;recorded&nbsp;the&nbsp;offset&nbsp;of&nbsp;average&nbsp;rating&nbsp;given&nbsp;by&nbsp;each&nbsp;user&nbsp;relative&nbsp;to&nbsp;average&nbsp;of&nbsp;all&nbsp;ratings&nbsp;recorded&nbsp;<br>
+user_cache&nbsp;the&nbsp;user&nbsp;offsets&nbsp;cache&nbsp;file&nbsp;generated</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>sqrt</strong> = &lt;ufunc 'sqrt'&gt;<br>
+<strong>square</strong> = &lt;ufunc 'square'&gt;<br>
+<strong>subtract</strong> = &lt;ufunc 'subtract'&gt;</td></tr></table>
+</body></html>
