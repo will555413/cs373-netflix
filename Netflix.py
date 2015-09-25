@@ -58,7 +58,6 @@ def probe_read (probe, actual_rating, current) :
 
     while True:
         if ID.find(':')>-1:
-            # print("ID = "+ID)
             while pr != ID :
                 pr = next(probe)
                 ac = next(actual_rating)
@@ -66,7 +65,6 @@ def probe_read (probe, actual_rating, current) :
             ac = next(actual_rating)
             ID = next(IN)
 
-        # print("ID = "+ID+"pr = "+pr+"ac = "+ac)
         if int(ID) == int(pr):
             OUT.append(int(ac))
         try:
@@ -110,23 +108,17 @@ def netflix_solve (r, w) :
     for s in r :
         if s.find(':')>-1:
             mid = int(s.replace(':', ''))
-            # w.write(s)
+            w.write(s)
             actual.append(s)
             continue
         uid = int(s)
         v = mcache[0]+mcache[mid]+ucache[uid]
         predict.append(v)
         actual.append(s)
-        # w.write(str(round(v, 2))+"\n")
+        w.write(str(round(v, 2))+"\n")
 
     actual = probe_read(open('/u/wc6892/Documents/cs373-netflix/probe.txt','r'), open('/u/wc6892/Documents/netflix-tests/cls3282-probe_actual.txt','r'), actual)
 
     assert len(actual) == len(predict)
 
     w.write("RMSE: "+str(sqrt(mean(square(subtract(actual, predict)))))+"\n")
-
-    # # print later
-    # w.write(str(round(v, 2))+"\n")
-        
-    # RMSE = sqrt(mean(square(subtract(probe, predict))))
-    # w.write("RMSE: "+str(RMSE)+"\n")
