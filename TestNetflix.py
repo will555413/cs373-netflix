@@ -48,6 +48,13 @@ class TestNetflix (TestCase) :
         self.assertEqual(Dict[50],  -50)
         self.assertEqual(Dict[5],   5.5555)
 
+    def test_user_read_4 (self) :
+        s    = StringIO("777 -888\n-777 888\n99999999 -99999999")
+        Dict = user_cache_read(s)
+        self.assertEqual(Dict[777],      -888)
+        self.assertEqual(Dict[-777],     888)
+        self.assertEqual(Dict[99999999], -99999999)
+
     # --------------
     # mov_cache_read
     # --------------
@@ -79,6 +86,14 @@ class TestNetflix (TestCase) :
         self.assertEqual(lst[3], 7.77777)
         self.assertEqual(lst[4], -7.77777)
 
+    def test_mov_read_4 (self) :
+        s   = StringIO("99999999\n-99999999\n0.0000001\n-0.0000001")
+        lst = mov_cache_read(s)
+        self.assertEqual(lst[0], 99999999)
+        self.assertEqual(lst[1], -99999999)
+        self.assertEqual(lst[2], 0.0000001)
+        self.assertEqual(lst[3], -0.0000001)
+
     # -------------
     # netflix_solve
     # -------------
@@ -87,19 +102,25 @@ class TestNetflix (TestCase) :
         r = StringIO("1:\n30878\n2647871\n1283744\n2488120\n")
         w = StringIO()
         netflix_solve(r, w)
-        self.assertEqual(w.getvalue(), "1:\n3.78\n3.38\n3.69\n4.8\n")
+        self.assertEqual(w.getvalue(), "1:\n3.78\n3.38\n3.69\n4.8\nRMSE: 0.49\n")
 
     def test_solve_2 (self) :
         r = StringIO("10000:\n200206\n523108\n10001:\n262828\n2609496\n")
         w = StringIO()
         netflix_solve(r, w)
-        self.assertEqual(w.getvalue(), "10000:\n3.7\n3.56\n10001:\n3.49\n4.39\n")
+        self.assertEqual(w.getvalue(), "10000:\n3.7\n3.56\n10001:\n3.49\n4.39\nRMSE: 0.76\n")
 
     def test_solve_3 (self) :
-        r = StringIO("11895:\n568614\n2502587\n11896:\n911967\n2176297\n664527\n11897:\n73119\n1204080\n897013\n")
+        r = StringIO("1372:\n2449527\n1975483\n13731:\n1671304\n13746:\n982771\n2101154\n13819:\n129921\n")
         w = StringIO()
         netflix_solve(r, w)
-        self.assertEqual(w.getvalue(), "11895:\n3.64\n3.55\n11896:\n3.76\n3.31\n3.52\n11897:\n3.12\n2.82\n2.15\n")
+        self.assertEqual(w.getvalue(), "1372:\n3.7\n2.82\n13731:\n2.68\n13746:\n3.13\n3.11\n13819:\n3.8\nRMSE: 0.87\n")
+
+    def test_solve_4 (self) :
+        r = StringIO("15724:\n1923980\n1573:\n441153\n2041252\n1005679\n1361562\n15734:\n1458083\n")
+        w = StringIO()
+        netflix_solve(r, w)
+        self.assertEqual(w.getvalue(), "15724:\n3.21\n1573:\n3.25\n3.16\n3.37\n3.38\n15734:\n2.61\nRMSE: 1.04\n")
 
 # ----
 # main

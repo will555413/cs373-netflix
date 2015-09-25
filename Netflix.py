@@ -117,8 +117,8 @@ def netflix_solve (r, w) :
         actual.append(s)
         w.write(str(round(v, 2))+"\n")
 
-    actual = probe_read(open('/u/wc6892/Documents/cs373-netflix/probe.txt','r'), open('/u/wc6892/Documents/netflix-tests/cls3282-probe_actual.txt','r'), actual)
+    actual = probe_read(open('/u/wc6892/Documents/cs373-netflix/probe.txt','r'), open('/u/wc6892/Documents/cs373-netflix/probe_actual.txt','r'), actual)
 
     assert len(actual) == len(predict)
 
-    w.write("RMSE: "+str(sqrt(mean(square(subtract(actual, predict)))))+"\n")
+    w.write("RMSE: "+str(round(sqrt(mean(square(subtract(actual, predict)))), 2))+"\n")
