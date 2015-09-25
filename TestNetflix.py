@@ -27,21 +27,21 @@ class TestNetflix (TestCase) :
     # ---------------
 
     def test_user_read_1 (self) :
-        s    = "1 0.1\n2 -0.1\n50 5"
+        s    = StringIO("1 0.1\n2 -0.1\n50 5")
         Dict = user_cache_read(s)
         self.assertEqual(Dict[1],  0.1)
         self.assertEqual(Dict[2],  -0.1)
         self.assertEqual(Dict[50], 5)
 
     def test_user_read_2 (self) :
-        s    = "10 20\n-1 -500\n5000 0.00005"
+        s    = StringIO("10 20\n-1 -500\n5000 0.00005")
         Dict = user_cache_read(s)
         self.assertEqual(Dict[10],   20)
         self.assertEqual(Dict[-1],   -500)
         self.assertEqual(Dict[5000], 0.00005)
 
     def test_user_read_3 (self) :
-        s    = "0 0.001\n-50 50\n50 -50\n5 5.5555"
+        s    = StringIO("0 0.001\n-50 50\n50 -50\n5 5.5555")
         Dict = user_cache_read(s)
         self.assertEqual(Dict[0],   0.001)
         self.assertEqual(Dict[-50], 50)
@@ -53,7 +53,7 @@ class TestNetflix (TestCase) :
     # --------------
 
     def test_mov_read_1 (self) :
-        s   = "10\n0.5\n0.1\n-0.5\n-0.1"
+        s   = StringIO("10\n0.5\n0.1\n-0.5\n-0.1")
         lst = mov_cache_read(s)
         self.assertEqual(lst[0], 10)
         self.assertEqual(lst[1], 0.5)
@@ -62,7 +62,7 @@ class TestNetflix (TestCase) :
         self.assertEqual(lst[4], -0.1)
 
     def test_mov_read_2 (self) :
-        s   = "-10\n1000\n-1000\n0.000001\n-0.000001"
+        s   = StringIO("-10\n1000\n-1000\n0.000001\n-0.000001")
         lst = mov_cache_read(s)
         self.assertEqual(lst[0], -10)
         self.assertEqual(lst[1], 1000)
@@ -71,13 +71,13 @@ class TestNetflix (TestCase) :
         self.assertEqual(lst[4], -0.000001)
 
     def test_mov_read_3 (self) :
-        s   = "-0.00001\n88888\n-88888\n7.77777\n-7.77777"
+        s   = StringIO("-0.00001\n88888\n-88888\n7.77777\n-7.77777")
         lst = mov_cache_read(s)
         self.assertEqual(lst[0], -0.00001)
         self.assertEqual(lst[1], 88888)
         self.assertEqual(lst[2], -88888)
         self.assertEqual(lst[3], 7.77777)
-        self.assertEqual(lst[4], 7.77777)
+        self.assertEqual(lst[4], -7.77777)
 
     # -------------
     # netflix_solve

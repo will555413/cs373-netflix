@@ -1,0 +1,23 @@
+...TestNetflix.py:89: ResourceWarning: unclosed file <_io.TextIOWrapper name='/u/ebanner/netflix-tests/wc6892-ucacheoff.txt' mode='r' encoding='UTF-8'>
+  netflix_solve(r, w)
+TestNetflix.py:89: ResourceWarning: unclosed file <_io.TextIOWrapper name='/u/ebanner/netflix-tests/wc6892-mcacheoff.txt' mode='r' encoding='UTF-8'>
+  netflix_solve(r, w)
+.TestNetflix.py:95: ResourceWarning: unclosed file <_io.TextIOWrapper name='/u/ebanner/netflix-tests/wc6892-ucacheoff.txt' mode='r' encoding='UTF-8'>
+  netflix_solve(r, w)
+TestNetflix.py:95: ResourceWarning: unclosed file <_io.TextIOWrapper name='/u/ebanner/netflix-tests/wc6892-mcacheoff.txt' mode='r' encoding='UTF-8'>
+  netflix_solve(r, w)
+.TestNetflix.py:101: ResourceWarning: unclosed file <_io.TextIOWrapper name='/u/ebanner/netflix-tests/wc6892-ucacheoff.txt' mode='r' encoding='UTF-8'>
+  netflix_solve(r, w)
+TestNetflix.py:101: ResourceWarning: unclosed file <_io.TextIOWrapper name='/u/ebanner/netflix-tests/wc6892-mcacheoff.txt' mode='r' encoding='UTF-8'>
+  netflix_solve(r, w)
+....
+----------------------------------------------------------------------
+Ran 9 tests in 4.880s
+
+OK
+Name             Stmts   Miss Branch BrPart  Cover   Missing
+------------------------------------------------------------
+Netflix.py          33      2     10      1    93%   59-60, 53->59
+TestNetflix.py      64      0      2      1    98%   108->-15
+------------------------------------------------------------
+TOTAL               97      2     12      2    96%   
