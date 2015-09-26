@@ -1,3 +1,77 @@
+commit a081accde67eefdd33b0f0b22c20d71294751c26
+Merge: 602e231 5aa9935
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Sat Sep 26 15:53:31 2015 -0500
+
+    Merge branch 'dev'
+    update for Travis CI tests
+
+commit 5aa99357380c14a9bcdd737c0908097cd0603584
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Sat Sep 26 15:40:39 2015 -0500
+
+    update makefile for coverage on Travis CI
+
+commit 32a7dfdbcb3dc59e9eb39fb518e9f9eb466c35a5
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Sat Sep 26 15:37:37 2015 -0500
+
+    ran make clean to initiate tests on Travis CI
+
+commit f1916569ec00d6952633686fc74ecaf6d2cb7d34
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Sat Sep 26 15:34:52 2015 -0500
+
+    update .coveragerc and makefile for Travis CI
+
+commit c00bc92354549c3ce3ac8b7284ee7fd1e699e4d0
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Sat Sep 26 15:28:42 2015 -0500
+
+    fix request for Travis C
+
+commit b7e9d51dbcd76dd4ab03bfbb3085c3f5b896be62
+Author: William <will555413>
+Date:   Sat Sep 26 10:29:57 2015 -0500
+
+    to be tested on lab machine
+
+commit 602e231127452772315d418a1971c5c3b11b024d
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Fri Sep 25 14:37:41 2015 -0500
+
+    final
+
+commit 3f48710d0bed79d213fad9c4048256225c6e5c55
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Fri Sep 25 14:35:44 2015 -0500
+
+    remove file no longer using
+
+commit 3505db4c6c2ae5d07d8588074dc8f074a87cc027
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Fri Sep 25 14:34:08 2015 -0500
+
+    UnitTest Update
+
+commit eaa8c837b95baaf588d4258e56a6f65e5aedb5c8
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Fri Sep 25 14:14:53 2015 -0500
+
+    update Netflix.py to print RMSE
+
+commit 54465aade1d4371ecc7f7c18cf226dc0ac23ed47
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Fri Sep 25 14:13:29 2015 -0500
+
+    update input_generator
+
+commit a6db90a2559d0a36179fec1ebcd09b666d93a90c
+Author: will555413 <will555413@yahoo.com.tw>
+Date:   Thu Sep 24 21:48:10 2015 -0500
+
+    passing on local
+
 commit 2955f6e651bfcf74abeae556885c25e5f45bd04d
 Author: will555413 <will555413@yahoo.com.tw>
 Date:   Thu Sep 24 21:46:11 2015 -0500
