@@ -71,6 +71,6 @@ RunNetflix.tmp: RunNetflix.in RunNetflix.out RunNetflix.py
 	diff RunNetflix.tmp RunNetflix.out
 
 TestNetflix.tmp: TestNetflix.py
-	coverage3 run 	 --omit='/usr/lib/python3/dist-packages/numpy/*,/lusr/lib/python3.4/dist-packages/requests/*,virtualenv*' --branch TestNetflix.py >  TestNetflix.tmp 2>&1
+	coverage3 run 	 --omit='/usr/lib/python3/dist-packages/numpy/*,/lusr/lib/python3.4/dist-packages/requests/*,/home/travis/virtualenv/*' --branch TestNetflix.py >  TestNetflix.tmp 2>&1
 	coverage3 report -m                      >> TestNetflix.tmp
 	cat TestNetflix.tmp
